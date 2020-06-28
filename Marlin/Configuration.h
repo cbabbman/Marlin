@@ -72,7 +72,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "CJB" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "CJB - Ender Pro" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -484,7 +484,7 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
-   // Creality Ender-3
+   // Creality Ender-3 Pro
   #define DEFAULT_Kp 23.27
   #define DEFAULT_Ki 1.89
   #define DEFAULT_Kd 71.88
@@ -1061,7 +1061,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR true		// BondTech BMG Requirement = false
+#define INVERT_E0_DIR false		// BondTech BMG Requirement = false
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
