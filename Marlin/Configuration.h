@@ -18,7 +18,8 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *
- * Babbman Ender 3 - 20200628
+ * Vanilla Marlin Bugfix 2.x
+ * Ender 3 - Babb
  */
 #pragma once
 
@@ -485,15 +486,14 @@
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
 
    // Creality Ender-3
-  //#define DEFAULT_Kp 21.73
-  //#define DEFAULT_Ki 1.54
-  //#define DEFAULT_Kd 76.55
-
-     // My Ender-3
+   // My Ender-3
   #define DEFAULT_Kp 28.47
   #define DEFAULT_Ki 2.59
   #define DEFAULT_Kd 78.17
-  
+  // Original Settings
+  //#define DEFAULT_Kp 21.73
+  //#define DEFAULT_Ki 1.54
+  //#define DEFAULT_Kd 76.55
 #endif // PIDTEMP
 
 //===========================================================================
@@ -648,7 +648,7 @@
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING true // Set to true to invert the logic of the probe.
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false // Set to true to invert the logic of the probe.
 
 /**
  * Stepper Drivers
@@ -725,9 +725,8 @@
  * Default Axis Steps Per Unit (steps/mm)
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
- */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 415 }
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 93 } Original
+ * Bondtech BMG uses 415 steps on extruder instead of 93
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 428.70 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1060,7 +1059,7 @@
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
-#define INVERT_E0_DIR false
+#define INVERT_E0_DIR false		// BondTech BMG Requirement = false
 #define INVERT_E1_DIR false
 #define INVERT_E2_DIR false
 #define INVERT_E3_DIR false
@@ -1114,7 +1113,7 @@
 #if ENABLED(MIN_SOFTWARE_ENDSTOPS)
   #define MIN_SOFTWARE_ENDSTOP_X
   #define MIN_SOFTWARE_ENDSTOP_Y
-  //define MIN_SOFTWARE_ENDSTOP_Z
+  //#define MIN_SOFTWARE_ENDSTOP_Z
 #endif
 
 // Max software endstops constrain movement within maximum coordinate bounds
@@ -1471,7 +1470,7 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 200
+#define PREHEAT_1_TEMP_HOTEND 210
 #define PREHEAT_1_TEMP_BED     60
 #define PREHEAT_1_FAN_SPEED     128 // Value from 0 to 255
 
@@ -1595,7 +1594,7 @@
  *
  * View the current statistics with M78.
  */
-#define PRINTCOUNTER
+//#define PRINTCOUNTER
 
 //=============================================================================
 //============================= LCD and SD support ============================
