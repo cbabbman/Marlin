@@ -41,6 +41,18 @@
 //=============================Thermal Settings  ============================
 //===========================================================================
 
+/**
+ * Thermocouple sensors are quite sensitive to noise.  Any noise induced in
+ * the sensor wires, such as by stepper motor wires run in parallel to them,
+ * may result in the thermocouple sensor reporting spurious errors.  This
+ * value is the number of errors which can occur in a row before the error
+ * is reported.  This allows us to ignore intermittent error conditions while
+ * still detecting an actual failure, which should result in a continuous
+ * stream of errors from the sensor.
+ *
+ * Set this value to 0 to fail on the first error to occur.
+ */
+#define THERMOCOUPLE_MAX_ERRORS 15   
 //
 // Custom Thermistor 1000 parameters
 //
@@ -264,18 +276,28 @@
 #endif
 
 /**
- * Automatic Temperature:
- * The hotend target temperature is calculated by all the buffered lines of gcode.
- * The maximum buffered steps/sec of the extruder motor is called "se".
- * Start autotemp mode with M109 S<mintemp> B<maxtemp> F<factor>
- * The target temperature is set to mintemp+factor*se[steps/sec] and is limited by
- * mintemp and maxtemp. Turn this off by executing M109 without F*
- * Also, if the temperature is set to a value below mintemp, it will not be changed by autotemp.
- * On an Ultimaker, some initial testing worked with M109 S215 B260 F1 in the start.gcode
+ * Automatic Temperature Mode
+ *
+ * Dynamically adjust the hotend target temperature based on planned E moves.
+ *
+ * (Contrast with PID_EXTRUSION_SCALING, which tracks E movement and adjusts PID
+ *  behavior using an additional kC value.)
+ *
+ * Autotemp is calculated by (mintemp + factor * mm_per_sec), capped to maxtemp.
+ *
+ * Enable Autotemp Mode with M104/M109 F<factor> S<mintemp> B<maxtemp>.
+ * Disable by sending M104/M109 with no F parameter (or F0 with AUTOTEMP_PROPORTIONAL).
  */
 #define AUTOTEMP
 #if ENABLED(AUTOTEMP)
-  #define AUTOTEMP_OLDWEIGHT 0.98
+  #define AUTOTEMP_OLDWEIGHT    0.98
+  // Turn on AUTOTEMP on M104/M109 by default using proportions set here
+  //#define AUTOTEMP_PROPORTIONAL
+  #if ENABLED(AUTOTEMP_PROPORTIONAL)
+    #define AUTOTEMP_MIN_P      0 // (°C) Added to the target temperature
+    #define AUTOTEMP_MAX_P      5 // (°C) Added to the target temperature
+    #define AUTOTEMP_FACTOR_P   1 // Apply this F parameter by default (overridden by M104/M109 F)
+  #endif
 #endif
 
 // Extra options for the M114 "Current Position" report
@@ -327,6 +349,17 @@
   #define EXTRUDER_RUNOUT_EXTRUDE 5   // (mm)
 #endif
 
+/**
+ * Hotend Idle Timeout
+ * Prevent filament in the nozzle from charring and causing a critical jam.
+ */
+//#define HOTEND_IDLE_TIMEOUT
+#if ENABLED(HOTEND_IDLE_TIMEOUT)
+  #define HOTEND_IDLE_TIMEOUT_SEC (5*60)    // (seconds) Time without extruder movement to trigger protection
+  #define HOTEND_IDLE_MIN_TRIGGER   180     // (°C) Minimum temperature to enable hotend protection
+  #define HOTEND_IDLE_NOZZLE_TARGET   0     // (°C) Safe temperature for the nozzle after timeout
+  #define HOTEND_IDLE_BED_TARGET      0     // (°C) Safe temperature for the bed after timeout
+#endif
 // @section temperature
 
 // Calibration for AD595 / AD8495 sensor to adjust temperature measurements.
@@ -941,7 +974,7 @@
 // @section lcd
 
 #if EITHER(ULTIPANEL, EXTENSIBLE_UI)
-  #define MANUAL_FEEDRATE { 50*60, 50*60, 4*60, 60 } // Feedrates for manual moves along X, Y, Z, E from panel
+  #define MANUAL_FEEDRATE { 50*60, 50*60, 4*60, 2*60 } // Feedrates for manual moves along X, Y, Z, E from panel
   #define SHORT_MANUAL_Z_MOVE 0.025 // (mm) Smallest manual Z move (< 0.1mm)
   #if ENABLED(ULTIPANEL)
     #define MANUAL_E_MOVES_RELATIVE // Display extruder move distance rather than "position"
@@ -3145,7 +3178,7 @@
 //#define M100_FREE_MEMORY_WATCHER
 
 //
-// M43 - display pin status, toggle pins, watch pins, watch endstops & toggle LED, test servo probe
+ M43 - display pin status, toggle pins, watch pins, watch endstops & toggle LED, test servo probe
 //
 //#define PINS_DEBUGGING
 
