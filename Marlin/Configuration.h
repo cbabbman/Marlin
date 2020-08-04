@@ -133,7 +133,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "Babb Ender-3"
+#define CUSTOM_MACHINE_NAME "Babb Ender-3 / 3Pro"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -481,10 +481,15 @@
                                   // Set/get with gcode: M301 E[extruder number, 0-2]
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
-  // Creality Ender-3
-  #define DEFAULT_Kp 28.57
-  #define DEFAULT_Ki 2.49
-  #define DEFAULT_Kd 81.87
+  // Babb Ender-3
+  //#define DEFAULT_Kp 21.73
+  //#define DEFAULT_Ki 1.69
+  //#define DEFAULT_Kd 69.68
+
+// Babb Ender-3 Pro
+  #define DEFAULT_Kp 22.3
+  #define DEFAULT_Ki 1.63
+  #define DEFAULT_Kd 76.42
 
 #endif // PIDTEMP
 
@@ -730,6 +735,10 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
+// Babb Ender-3
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 428.7 }
+
+// Babb Ender-3 Pro
 #define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 428.7 }
 
 /**
@@ -970,10 +979,15 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -44, -15, -0.92 }
+// Babb Ender-3
+//#define NOZZLE_TO_PROBE_OFFSET { -44, -15, -1.07 }
+
+// Babb Ender-3 Pro
+#define NOZZLE_TO_PROBE_OFFSET { -44, -15, -0.88 }
+
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 35
+#define PROBING_MARGIN 20
 
 // X and Y axis travel speed (mm/m) between probes
 #define XY_PROBE_SPEED 15000
@@ -1105,8 +1119,14 @@
 #define Y_BED_SIZE 235
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
-#define Y_MIN_POS 0
+//Babb Ender-3
+//#define X_MIN_POS -4
+//#define Y_MIN_POS -8
+
+//Babb Ender-3 Pro
+#define X_MIN_POS -5
+#define Y_MIN_POS -14
+
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
@@ -1350,8 +1370,15 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
+
+// Babb Ender 3
+//#define MANUAL_X_HOME_POS -
+//#define MANUAL_Y_HOME_POS -
+
+// Babb Ender 3 Pro
+//#define MANUAL_X_HOME_POS -.5
+//#define MANUAL_Y_HOME_POS -9.5
+
 //#define MANUAL_Z_HOME_POS 0
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
