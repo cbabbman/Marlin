@@ -980,7 +980,7 @@
  *     O-- FRONT --+
  */
 // Babb Ender-3
-#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -2.4 }
+#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -5.1 }
 
 // Babb Ender-3 Pro
 //#define NOZZLE_TO_PROBE_OFFSET { -44, -15, -0.88 }
