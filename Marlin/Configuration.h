@@ -980,7 +980,7 @@
  *     O-- FRONT --+
  */
 // Babb Ender-3
-#define NOZZLE_TO_PROBE_OFFSET { -40, -8, -2.4 }
+#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -2.4 }
 
 // Babb Ender-3 Pro
 //#define NOZZLE_TO_PROBE_OFFSET { -44, -15, -0.88 }
@@ -1513,7 +1513,7 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 185
+#define PREHEAT_1_TEMP_HOTEND 210
 #define PREHEAT_1_TEMP_BED     45
 #define PREHEAT_1_FAN_SPEED   0 // Value from 0 to 255
 
@@ -1537,7 +1537,7 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MIN_POS + 10), (Y_MAX_POS - 10), 20 }
+  #define NOZZLE_PARK_POINT { (X_MAX_POS - 10), (Y_MIN_POS + 10), 30 }
   //#define NOZZLE_PARK_X_ONLY          // X move only is required to park
   //#define NOZZLE_PARK_Y_ONLY          // Y move only is required to park
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
