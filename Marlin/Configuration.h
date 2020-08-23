@@ -420,7 +420,12 @@
  *   998 : Dummy Table that ALWAYS reads 25°C or the temperature defined below.
  *   999 : Dummy Table that ALWAYS reads 100°C or the temperature defined below.
  */
-#define TEMP_SENSOR_0 5
+// Babb Ender 3
+//#define TEMP_SENSOR_0 5
+
+// Babb Ender 3 Pro
+#define TEMP_SENSOR_0 1
+
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
 #define TEMP_SENSOR_3 0
@@ -486,14 +491,14 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
   // Babb Ender-3
-  #define DEFAULT_Kp 23.57
-  #define DEFAULT_Ki 2.6
-  #define DEFAULT_Kd 53.38
+ // #define DEFAULT_Kp 23.57
+ // #define DEFAULT_Ki 2.6
+ // #define DEFAULT_Kd 53.38
 
 // Babb Ender-3 Pro
-  //#define DEFAULT_Kp 22.3
-  //#define DEFAULT_Ki 1.63
-  //#define DEFAULT_Kd 76.42
+  #define DEFAULT_Kp 22.3
+  #define DEFAULT_Ki 1.63
+  #define DEFAULT_Kd 76.42
 
 #endif // PIDTEMP
 
@@ -740,10 +745,10 @@
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
 // Babb Ender-3
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 428.7 }
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 428.7 }
 
 // Babb Ender-3 Pro
-//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 428.7 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 428.7 }
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -984,10 +989,10 @@
  *     O-- FRONT --+
  */
 // Babb Ender-3
-#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -5.1 }
+//#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -5.1 }
 
 // Babb Ender-3 Pro
-//#define NOZZLE_TO_PROBE_OFFSET { -44, -15, -0.88 }
+#define NOZZLE_TO_PROBE_OFFSET { -44, -15, -0.88 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1124,12 +1129,12 @@
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 //Babb Ender-3
-#define X_MIN_POS -4
-#define Y_MIN_POS -8
+//#define X_MIN_POS -4
+//#define Y_MIN_POS -8
 
 //Babb Ender-3 Pro
-//#define X_MIN_POS -5
-//#define Y_MIN_POS -14
+#define X_MIN_POS -5
+#define Y_MIN_POS -14
 
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
@@ -1542,7 +1547,7 @@
 
 #if ENABLED(NOZZLE_PARK_FEATURE)
   // Specify a park position as { X, Y, Z_raise }
-  #define NOZZLE_PARK_POINT { (X_MAX_POS - 10), (Y_MIN_POS + 10), 30 }
+  #define NOZZLE_PARK_POINT { (X_MAX_POS - 10), (Y_MIN_POS + 10), 50 }
   //#define NOZZLE_PARK_X_ONLY          // X move only is required to park
   //#define NOZZLE_PARK_Y_ONLY          // Y move only is required to park
   #define NOZZLE_PARK_Z_RAISE_MIN   2   // (mm) Always raise Z by at least this distance
