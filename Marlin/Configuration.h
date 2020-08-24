@@ -424,7 +424,7 @@
 //#define TEMP_SENSOR_0 5
 
 // Babb Ender 3 Pro
-#define TEMP_SENSOR_0 1
+#define TEMP_SENSOR_0 5
 
 #define TEMP_SENSOR_1 0
 #define TEMP_SENSOR_2 0
@@ -992,7 +992,7 @@
 //#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -5.1 }
 
 // Babb Ender-3 Pro
-#define NOZZLE_TO_PROBE_OFFSET { -44, -15, -0.88 }
+#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -5.1 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
