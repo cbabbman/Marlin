@@ -123,7 +123,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200
+#define BAUDRATE 250000
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -491,9 +491,14 @@
 
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
   // Creality Ender-3
-  #define DEFAULT_Kp 22.3
-  #define DEFAULT_Ki 1.63
-  #define DEFAULT_Kd 76.42
+  #define DEFAULT_Kp 20.26
+  #define DEFAULT_Ki 1.89
+  #define DEFAULT_Kd 54.4
+
+    // Creality Ender-3 Pro
+  //#define DEFAULT_Kp 22.3
+  //#define DEFAULT_Ki 1.63
+  //#define DEFAULT_Kd 76.42
 
   // Ultimaker
   //#define DEFAULT_Kp 22.2
@@ -754,7 +759,8 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 428.7 }
+#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 422.86 } // Ender 3
+//#define DEFAULT_AXIS_STEPS_PER_UNIT   { 80, 80, 400, 422.86 } // Ender 3 Pro
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -1000,7 +1006,8 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -5.1 }
+#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -3.04 } // Ender 3
+//#define NOZZLE_TO_PROBE_OFFSET { 53.5, 10.35, -5.1 } // Ender 3 Pro
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1140,8 +1147,8 @@
 #define Y_BED_SIZE 235
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
-#define X_MIN_POS 0
-#define Y_MIN_POS 0
+#define X_MIN_POS 0 // ender = 5, pro = -5
+#define Y_MIN_POS 0 //ender = -11, pro = -14
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
 #define Y_MAX_POS Y_BED_SIZE
@@ -1386,8 +1393,8 @@
 
 // Manually set the home position. Leave these undefined for automatic settings.
 // For DELTA this is the top-center of the Cartesian print volume.
-//#define MANUAL_X_HOME_POS 0
-//#define MANUAL_Y_HOME_POS 0
+#define MANUAL_X_HOME_POS 0
+#define MANUAL_Y_HOME_POS 0
 //#define MANUAL_Z_HOME_POS 0
 
 // Use "Z Safe Homing" to avoid homing with a Z probe outside the bed area.
@@ -1517,8 +1524,8 @@
 
 // Preheat Constants
 #define PREHEAT_1_LABEL       "PLA"
-#define PREHEAT_1_TEMP_HOTEND 210
-#define PREHEAT_1_TEMP_BED     60
+#define PREHEAT_1_TEMP_HOTEND 200
+#define PREHEAT_1_TEMP_BED     50
 #define PREHEAT_1_FAN_SPEED   255 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "ABS"
